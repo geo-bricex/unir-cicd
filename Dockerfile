@@ -3,6 +3,7 @@ FROM python:3.8-slim
 # Instalamos dependencias necesarias incluyendo Docker
 RUN apt-get update && apt-get install -y docker.io
 
+# Crear directorio de trabajo
 WORKDIR /opt/calc
 
 # Copiar los archivos del proyecto
