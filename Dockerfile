@@ -1,10 +1,11 @@
-FROM python:3.6-slim
-
-RUN mkdir -p /opt/calc
+FROM python:3.8-slim
 
 WORKDIR /opt/calc
 
-COPY .coveragerc .pylintrc pyproject.toml pytest.ini requires ./
-COPY app ./app
-COPY test ./test
-RUN pip install -r requires
+COPY . .
+
+RUN pip install -r requirements.txt
+
+ENV FLASK_APP=app/api.py
+
+CMD ["flask", "run", "--host=0.0.0.0"]
