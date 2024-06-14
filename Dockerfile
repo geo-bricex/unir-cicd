@@ -1,16 +1,16 @@
-FROM python:3.8-slim
+FROM docker:19.03.12
 
-# Instalamos dependencias necesarias incluyendo Docker
-RUN apt-get update && apt-get install -y docker.io
+# Instalar Python y otras dependencias necesarias
+RUN apk add --no-cache python3-dev py3-pip build-base
 
-# Crear directorio de trabajo
+# Establecer el directorio de trabajo
 WORKDIR /opt/calc
 
 # Copiar los archivos del proyecto
 COPY . .
 
 # Instalar dependencias de Python
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Configurar la aplicación Flask
 ENV FLASK_APP=app/api.py
